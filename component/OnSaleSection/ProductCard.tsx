@@ -117,9 +117,7 @@ function ProductAddToCart(gameSale: GameSale) {
         )}
         <AspectRatio maxW={"full"} ratio={4 / 3}>
           <Image
-            src={
-              "img/7.webp"
-            }
+            src={`image/${gameSale.id}.webp`}
             alt={`Picture of ${gameSale.name}`}
             roundedTop="lg"
             opacity={0.8}
