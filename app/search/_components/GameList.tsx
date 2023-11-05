@@ -11,6 +11,7 @@ import MobileNav from "./MobileNav";
 import ShowMenu from "./ShowMenu";
 import GameCard from "@/app/games/_components/GameCard";
 import { searchResults } from "@/component/Layout/SearchBar";
+import { IGameCard } from "../_interface/IGameCard";
 
 export default function GameList() {
 
@@ -20,13 +21,16 @@ export default function GameList() {
   setInterval(function () {
     setData(searchResults);
   }, 300);
+  // useEffect(()=> {
+  //   setData(searchResults);
+  // }, []);
 
 
   const isLoading=false;
   return (
     <Box w={"full"} p={0} mr={{ base: 0, lg: 10 }}>
       {/*header*/}
-      <Flex>
+      <Flex className="mb-4">
         <Text textColor={"whiteAlpha.600"}>Show:</Text>
         <ShowMenu />
         <Spacer />

@@ -117,9 +117,7 @@ function ProductAddToCart(gameSale: GameSale) {
         )}
         <AspectRatio maxW={"full"} ratio={4 / 3}>
           <Image
-            src={
-              "img/7.webp"
-            }
+            src={`img/${gameSale.id}.webp`}
             alt={`Picture of ${gameSale.name}`}
             roundedTop="lg"
             opacity={0.8}
@@ -143,13 +141,14 @@ function ProductAddToCart(gameSale: GameSale) {
             </Badge>
           </Box>
 
-          <Flex mt="1" justifyContent="space-between" alignContent="center">
+          <Flex mt="1" justifyContent="space-between" alignContent="center"> 
             <Box
-              fontSize={{ base: "xl", md: "2xl" }}
+              fontSize={{ base: "md", md: "xl" }}
               fontWeight="semibold"
               as="h4"
               lineHeight="tight"
               textColor={"black"}
+              className="w-full h-[30px] line-clamp-1"
               // isTruncated
             >
               {gameSale.name}

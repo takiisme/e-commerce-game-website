@@ -111,7 +111,7 @@ import {
                     <Image
                       ml={0}
                       boxSize={{ base: "100%", md: "100%", lg: "100%" }}
-                      src={"img/11.webp"}
+                      src={`/img/${images[currentImageIndex]?.id}.webp`}
                       alt="Grand Theft Auto VI"
                       objectFit="cover"
                       rounded={10}
@@ -212,7 +212,7 @@ import {
                   >
                     <Flex>
                       <Image
-                        src={"img/9.webp"}
+                        src={`/img/${image?.id}.webp`}
                         h={"5vw"}
                         w={"4vw"}
                         objectFit="cover"
@@ -244,7 +244,7 @@ import {
         <Slider {...settings}>
         {images.map((image, index) => (
        
-          <AspectRatio m={4} ratio={3 / 4} >
+          <AspectRatio key={index} m={4} ratio={3 / 4} >
     
             <Box position="relative">
             <Tooltip

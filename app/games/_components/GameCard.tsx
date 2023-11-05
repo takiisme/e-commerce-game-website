@@ -1,4 +1,5 @@
 import {
+  AspectRatio,
   Button,
   Card,
   CardBody,
@@ -35,13 +36,14 @@ export default function GameCard({
     <Link href={`/games/${id}`}>
       <Card
         key={id}
-        w={"fit-content"}
+        // w={"fit-content"}
         maxW={200}
         bg={"none"}
         position="relative"
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
         cursor={"pointer"}
+        className="w-full"
       >
         {showIcon && (
           <Tooltip
@@ -72,14 +74,17 @@ export default function GameCard({
             </Button>
           </Tooltip>
         )}
-        <CardBody p={0}>
-          <Image
-            alt="The last of my pizza"
-            src={`/img/${id}.webp`}
-            borderRadius="lg"
-            opacity={0.8}
-            _hover={{ opacity: 1 }}
-          />
+        <CardBody p={0} className="w-full">
+          {/* <AspectRatio ratio={3/2}> */}
+            <Image
+              alt="The last of my pizza"
+              src={`/img/${id}.webp`}
+              borderRadius="lg"
+              opacity={0.8}
+              _hover={{ opacity: 1 }}
+              className="w-full aspect-[3/2]"
+            />
+          {/* </AspectRatio> */}
         </CardBody>
         <CardFooter p={0} mt={2}>
           <Stack spacing={1}>

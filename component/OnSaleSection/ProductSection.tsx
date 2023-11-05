@@ -63,7 +63,7 @@ export default function SimpleThreeColumns() {
   // console.log(gameSale)
 
   var settings = {
-    style: { justifyContent: "space-between"},
+    style: { justifyContent: "space-between" },
     // dots: true,
     infinite: true,
     speed: 500,
@@ -85,17 +85,17 @@ export default function SimpleThreeColumns() {
           // dots: true
         },
       },
+      // {
+      //   breakpoint: 1600,
+      //   settings: {
+      //     slidesToShow: 2,
+      //     slidesToScroll: 1,
+      //     infinite: true,
+      //     // dots: true
+      //   },
+      // },
       {
-        breakpoint: 1600,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 1,
-          infinite: true,
-          // dots: true
-        },
-      },
-      {
-        breakpoint: 700,
+        breakpoint: 900,
         settings: {
           slidesToShow: 2,
           slidesToScroll: 1,
@@ -119,18 +119,12 @@ export default function SimpleThreeColumns() {
     <Container p={0} maxW={{ base: "85%", lg: "80%" }} my={10}>
       {/* <Box alignSelf="center" width="100%" maxWidth={{base:"95vw", lg:"75vw"}}  pl={8}> */}
       <NavigationTag name="Game on Sale" url="#" />
-     
-  
 
       <Slider {...settings}>
         {gameSale.map((product) => (
-
-            <Product key={product.id} {...product} />
-            
-    
-        ))} 
+          <Product key={product.id} {...product} />
+        ))}
       </Slider>
-
 
       {/* </Box> */}
     </Container>
