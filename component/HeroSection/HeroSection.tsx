@@ -111,7 +111,7 @@ import {
                     <Image
                       ml={0}
                       boxSize={{ base: "100%", md: "100%", lg: "100%" }}
-                      src={"img/11.webp"}
+                      src={`/image/${images[currentImageIndex]?.id}.webp`}
                       alt="Grand Theft Auto VI"
                       objectFit="cover"
                       rounded={10}
@@ -212,7 +212,7 @@ import {
                   >
                     <Flex>
                       <Image
-                        src={"img/9.webp"}
+                        src={`/image/${image?.id}.webp`}
                         h={"5vw"}
                         w={"4vw"}
                         objectFit="cover"
