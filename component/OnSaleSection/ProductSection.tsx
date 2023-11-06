@@ -18,6 +18,8 @@ import "slick-carousel/slick/slick-theme.css";
 import NavigationTag from "@/component/OnSaleSection/NavigationTag";
 import Slider from "react-slick";
 import axios from "axios";
+import { ChevronRightIcon } from "@chakra-ui/icons";
+import { useRouter } from "next/navigation";
 
 interface GameSale {
   id: number;
@@ -43,6 +45,7 @@ interface SalePromotion {
 }
 
 export default function SimpleThreeColumns() {
+  const router = useRouter();
   const [gameSale, setGameSale] = useState<GameSale[]>([]);
 
   useEffect(() => {
@@ -71,7 +74,7 @@ export default function SimpleThreeColumns() {
     slidesToShow: 3,
     swipeToSlide: true,
     adaptiveHeight: true,
-    autoplay: true,
+    autoplay: false,
     autoplaySpeed: 3000,
 
     // fade: true,
@@ -81,7 +84,6 @@ export default function SimpleThreeColumns() {
         settings: {
           slidesToShow: 3,
           slidesToScroll: 1,
-          infinite: true,
           // dots: true
         },
       },
@@ -99,7 +101,6 @@ export default function SimpleThreeColumns() {
         settings: {
           slidesToShow: 2,
           slidesToScroll: 1,
-          initialSlide: 1,
         },
       },
       {
@@ -118,14 +119,26 @@ export default function SimpleThreeColumns() {
   return (
     <Container p={0} maxW={{ base: "85%", lg: "80%" }} my={10}>
       {/* <Box alignSelf="center" width="100%" maxWidth={{base:"95vw", lg:"75vw"}}  pl={8}> */}
-      <NavigationTag name="Game on Sale" url="#" />
+      <Flex
+        my={4}
+        ml={10}
+        _hover={{ color: "blue.500", transform: "translateX(10px)" }}
+        cursor={"pointer"}
+        fontWeight="800"
+        onClick={() => router.push("/games")}
+        transition={"all .3s ease"}
+        color={"white"}
+        align={"left"}
+        alignItems={"center"}
+      >
+      {"Games on Sale"} <Icon w={5} h={5} as={ChevronRightIcon} />
+      </Flex>
 
       <Slider {...settings}>
         {gameSale.map((product) => (
           <Product key={product.id} {...product} />
         ))}
       </Slider>
-
       {/* </Box> */}
     </Container>
   );

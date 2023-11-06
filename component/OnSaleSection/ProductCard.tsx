@@ -17,11 +17,12 @@ import {
   VStack,
   AspectRatio,
 } from "@chakra-ui/react";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { BsStar, BsStarFill, BsStarHalf } from "react-icons/bs";
 import { FiShoppingCart } from "react-icons/fi";
-import { IoAddCircleOutline } from "react-icons/io5";
+import { IoAddCircleOutline, IoHeart } from "react-icons/io5";
 import { useRouter } from "next/navigation";
+import WishlistContext from "@/context/WishlistContext";
 
 // interface RatingProps {
 //   rating: number;
@@ -57,12 +58,38 @@ function ProductAddToCart(gameSale: GameSale) {
   const discountedPrice = Math.round(
     (gameSale.price * (100 - gameSale.saleDetails[0].discountRate)) / 100
   );
+  const wishlistCtx = useContext(WishlistContext);
+
+  const itemIsFavoriteHandler = (favoriteId: number) => {
+    return wishlistCtx.favorites.some((game) => game.id === favoriteId);
+  };
+
+  const [gameInWishlist, setGameInWishlist] = useState(
+    itemIsFavoriteHandler(gameSale.id)
+  );
+
   const handleMouseEnter = () => {
     setShowIcon(true);
   };
 
   const handleMouseLeave = () => {
     setShowIcon(false);
+  };
+
+  const toggleFavoriteStatusHandler = () => {
+    console.log(gameInWishlist);
+    if (gameInWishlist) {
+      wishlistCtx.removeFavorite(gameSale.id);
+    } else {
+      wishlistCtx.addFavorite({
+        id: gameSale.id,
+        name: gameSale.name,
+        price: discountedPrice,
+      });
+      console.log(wishlistCtx.favorites);
+      console.log(gameInWishlist);
+    }
+    setGameInWishlist(itemIsFavoriteHandler(gameSale.id));
   };
   return (
     <Flex
@@ -102,9 +129,10 @@ function ProductAddToCart(gameSale: GameSale) {
               alignSelf={"right"}
               zIndex={4}
               position="absolute"
+              onClick={toggleFavoriteStatusHandler}
             >
               <Icon
-                as={IoAddCircleOutline}
+                as={gameInWishlist? IoHeart : IoAddCircleOutline}
                 h={7}
                 w={7}
                 alignSelf={"right"}

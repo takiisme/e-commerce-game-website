@@ -17,9 +17,9 @@ import {
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import allGameDataAPI from "../AllGameAPI";
-import { IGameCard } from "@/app/games/_interface/IGameCard";
 import useGetAllGameApi from "@/app/games/_api/useGetAllGameApi";
 import searchGames from "./SearchResult";
+import { IGameCard } from "../interface/IGameCard";
 
 let searchResults: IGameCard[] = [];
 

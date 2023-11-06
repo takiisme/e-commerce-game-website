@@ -3,9 +3,10 @@ import ProductSection from "../component/OnSaleSection/ProductSection";
 
 import { Box, Container, Flex, Icon } from "@chakra-ui/react";
 import HeroSection from "@/component/HeroSection/HeroSection";
-import GameList from "./search/_components/GameList";
+import GameList from "../component/ui/search/GameList";
 import { useRouter } from "next/navigation";
 import { ChevronRightIcon } from "@chakra-ui/icons";
+import { WishlistContextProvider } from "../context/WishlistContext";
 export default function WithSubnavigation() {
   const router = useRouter();
   return (
@@ -25,11 +26,14 @@ export default function WithSubnavigation() {
           transition={"all .3s ease"}
           color={"white"}
           align={"left"}
+          alignItems={"center"}
+
         >
           {"Games Collection"} <Icon w={5} h={5} as={ChevronRightIcon} />
         </Flex>
         <Flex>
-          <GameList />
+          {/* <WishlistContextProvider children={<GameList />} /> */}
+          <GameList/>
         </Flex>
       </Container>
     </>
