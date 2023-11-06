@@ -1,29 +1,32 @@
 import {
   Box,
   Button,
-  Card,
-  Divider,
-  FormControl,
-  FormHelperText,
+  Text,
   FormLabel,
   Input,
+  FormControl,
 } from "@chakra-ui/react";
 import React from "react";
 import Rating from "./Rating";
 import axios from "axios";
 import getFromLocalStorage from "@/app/_lib/getFromLocalStorage";
+import CommentSection from "./CommentSection";
 
 export default function AddComment({ gameId, ...rest }: { gameId: number }) {
-  const [ratingStar, setRatingStar] = React.useState(0);
-  const [comment, setComment] = React.useState("");
+  const [isCommented, setIsCommented] = React.useState(false);
+  const [ratingStarRef, setRatingStarRef] = React.useState(0);
+  const [commentRef, setCommentRef] = React.useState("");
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    setIsCommented(true);
     event.preventDefault();
     console.log("Submitted");
-    setRatingStar(
-      +(document.getElementById("rating") as HTMLInputElement).value
-    );
-    setComment((document.getElementById("comment") as HTMLInputElement).value);
-
+    const ratingStar = +(document.getElementById("rating") as HTMLInputElement)
+      .value;
+    const comment = (document.getElementById("comment") as HTMLInputElement)
+      .value;
+    setCommentRef(comment);
+    setRatingStarRef(ratingStar);
+    console.log(ratingStar, comment);
     try {
       const data = { ratingStar, comment };
       const response = await axios.request({
@@ -41,19 +44,40 @@ export default function AddComment({ gameId, ...rest }: { gameId: number }) {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <Box bg={"whiteAlpha.300"} p={10} borderRadius={5}>
-        <FormLabel>Your comment</FormLabel>
-        <Input type="text" id="comment" _focus={{ bg: "whiteAlpha.400" }} />
-        <Rating
-          size={30}
-          icon="star"
-          scale={5}
-          fillColor="whiteAlpha.600"
-          strokeColor="grey"
+    <>
+      {!isCommented && (
+        <form onSubmit={handleSubmit}>
+          <Box bg={"whiteAlpha.300"} p={10} borderRadius={5}>
+            <FormControl isRequired>
+              <FormLabel>Your comment</FormLabel>
+              <Input
+                type="text"
+                id="comment"
+                _focus={{ bg: "whiteAlpha.400" }}
+              />
+            </FormControl>
+            <Rating
+              size={30}
+              icon="star"
+              scale={5}
+              fillColor="whiteAlpha.600"
+              strokeColor="grey"
+            />
+            <Button type="submit">Submit</Button>
+          </Box>
+        </form>
+      )}
+      {isCommented && (
+        <CommentSection
+          id={0}
+          ratingStar={ratingStarRef}
+          comment={commentRef}
+          ratingDateTIme={""}
+          user={{
+            username: "My comment",
+          }}
         />
-        <Button type="submit">Submit</Button>
-      </Box>
-    </form>
+      )}
+    </>
   );
 }
