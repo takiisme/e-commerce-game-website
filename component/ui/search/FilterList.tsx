@@ -5,6 +5,8 @@ import {
   AccordionPanel,
   Box,
   Button,
+  ListItem,
+  OrderedList,
   VStack,
 } from "@chakra-ui/react";
 import React, { useContext } from "react";
@@ -14,9 +16,10 @@ import WishlistContext from "@/context/WishlistContext";
 export default function FilterList({ genres, name }: IGenreList) {
   const filterCtx = useContext(WishlistContext);
 
-  const filterBy = (name: string)=>{
-    filterCtx.handleFilter(name)
-  }
+  const filterBy = (name: string) => {
+    filterCtx.handleFilter(name);
+  };
+
 
   return (
     <AccordionItem py={2}>
@@ -41,19 +44,19 @@ export default function FilterList({ genres, name }: IGenreList) {
       </h2>
       <AccordionPanel pb={4}>
         <VStack>
-          {genres?.map((genre) => (
-            <Button
-              key={genre.id}
-              w={"full"}
-              justifyContent="flex-start"
-              textColor={"whiteAlpha.600"}
-              bg={"none"}
-              _hover={{ textColor: "white" }}
-              onClick={()=> filterBy(genre.name)}
-            >
-              {genre.name}
-            </Button>
-          ))}
+            {genres.map((genre) => (
+                <Button
+                  key={genre.id}
+                  w={"full"}
+                  justifyContent="flex-start"
+                  textColor={"whiteAlpha.600"}
+                  bg={"none"}
+                  _hover={{ textColor: "white" }}
+                  onClick={() => filterBy(genre.name)}
+                >
+                  {genre.name}
+                </Button>
+            ))}
         </VStack>
       </AccordionPanel>
     </AccordionItem>

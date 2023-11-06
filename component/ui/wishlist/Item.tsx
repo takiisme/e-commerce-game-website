@@ -13,16 +13,30 @@ import {
 } from "@chakra-ui/react";
 import { useContext } from "react";
 
-export default function Item(props:IGame) {
+interface ItemPropsType{
+  game:IGame,
+  isCart: boolean
+}
+
+export default function Item({game, isCart}:ItemPropsType) {
   const wishlistCtx = useContext(WishlistContext);
 
   const removeWishlist = ()=>{
-    wishlistCtx.removeFavorite(props.id);
+    wishlistCtx.removeFavorite(game.id);
+  }
+
+  const removeCart = ()=>{
+    wishlistCtx.removeCart(game.id);
   }
   
   const moveToCart = ()=>{
-    wishlistCtx.removeFavorite(props.id);
-    wishlistCtx.addCart(props);
+    wishlistCtx.removeFavorite(game.id);
+    wishlistCtx.addCart(game);
+  }
+
+  const moveToWishlist = ()=>{
+    wishlistCtx.removeCart(game.id);
+    wishlistCtx.addFavorite(game);
   }
 
   return (
@@ -43,21 +57,21 @@ export default function Item(props:IGame) {
               borderRadius={5}
             />
             <CardHeader p={0} pl={5} fontSize={20}>
-              {props.name}
+              {game.name}
             </CardHeader>
           </Flex>
         </GridItem>
 
         {/* Game price and button area*/}
         <GridItem colSpan={1} mt={{ sm: 5, md: 0 }}>
-          <Text pb={5}>${props.price}</Text>
+          <Text pb={5}>${game.price}</Text>
           <Button
             bg={"none"}
             textColor={"whiteAlpha.600"}
             p={0}
             _hover={{ textColor: "white" }}
             pr={{ sm: 5, lg: 0 }}
-            onClick={removeWishlist}
+            onClick={isCart?removeCart:removeWishlist}
           >
             <Text textDecor={"underline"}>Remove</Text>
           </Button>
@@ -68,9 +82,9 @@ export default function Item(props:IGame) {
             border={"2px"}
             _hover={{ textColor: "white", bg: "whiteAlpha.400" }}
             w={"full"}
-            onClick={moveToCart}
+            onClick={isCart ? moveToWishlist : moveToCart}
           >
-            <Text textTransform={"uppercase"}>Add to cart</Text>
+            <Text textTransform={"uppercase"}>{isCart?"Move to Wishlist" : "Add to cart"}</Text>
           </Button>
         </GridItem>
       </SimpleGrid>

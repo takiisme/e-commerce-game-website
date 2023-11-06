@@ -20,7 +20,7 @@ export default function WishlistPage() {
           {favoriteCtx.totalFavorites === 0 ? (
             <h2 className="text-[24px]">You have no game here. Adding something!</h2>
           ) : (
-            <ItemsList list={favoriteCtx.favorites} />
+            <ItemsList list={favoriteCtx.favorites} isCart={false}/>
           )}
         </Container>
     //   }

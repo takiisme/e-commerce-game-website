@@ -6,16 +6,17 @@ import { IGame } from "@/context/WislistContextType";
 
 interface ItemsListProps{
   list: Array<IGame>,
+  isCart: boolean
 }
 
-export default function ItemsList({list}:ItemsListProps) {
+export default function ItemsList({list, isCart}:ItemsListProps) {
   const [position, setPosition] = useState({
     x: 0,
     y: 0,
   });
   return (
     <VStack spacing={5}>
-      {list.map((game) => (<Item key={game.id} id={game.id} name={game.name} price={game.price}/>))}
+      {list.map((game) => (<Item key={game.id} game={game} isCart={isCart}/>))}
     </VStack>
   );
 }

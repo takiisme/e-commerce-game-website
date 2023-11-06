@@ -21,7 +21,6 @@ import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 import { useRouter } from "next/navigation";
 import { useEffect, useState, createContext } from "react";
 import { usePathname } from "next/navigation";
-import { searchResults } from "./SearchBar";
 interface Props {
   children: React.ReactNode;
 }
@@ -54,7 +53,6 @@ const NavLink = (props: Props) => {
 
 export default function NavBar() {
   
-  // console.log("Kết quả: ", searchResults);
   
   const [lastTimeAccess, setLastTimeAccess] = useState("2020");
   const [isLogin, setIsLogin] = useState(false);

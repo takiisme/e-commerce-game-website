@@ -30,7 +30,7 @@ export default function GameList() {
   return (
     <Box w={"full"} p={0} mr={{ base: 0, lg: 10 }}>
       {/*header*/}
-      <Flex className="mb-4">
+      <Flex mb={5}>
         <Text textColor={"whiteAlpha.600"}>Show:</Text>
         <ShowMenu />
         <Spacer />

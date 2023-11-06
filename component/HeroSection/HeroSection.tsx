@@ -80,9 +80,9 @@ const ImageCarousel = () => {
   useEffect(() => {
     const interval = setInterval(() => {
        setCurrentImageIndex((prevIndex) => (prevIndex + 1) % 5);
-       console.log("===============")
-       console.log(`Send index: ${currentImageIndex}`)
-      wishlistButtonAssign(currentImageIndex);
+      //  console.log("===============")
+      //  console.log(`Send index: ${currentImageIndex}`)
+      // wishlistButtonAssign(currentImageIndex);
     }, 3000);
 
     // return () => clearInterval(interval);
@@ -90,8 +90,8 @@ const ImageCarousel = () => {
 
   const handleImageClick = (index: SetStateAction<number>) => {
     setCurrentImageIndex(index);
-    console.log(`Send index: ${currentImageIndex}`)
-    wishlistButtonAssign(currentImageIndex);
+    // console.log(`Send index: ${currentImageIndex}`)
+    // wishlistButtonAssign(currentImageIndex);
   };
 
   useEffect(() => {
@@ -215,7 +215,7 @@ const ImageCarousel = () => {
                           size="md"
                           width={200}
                           _hover={{ backgroundColor: "blackAlpha.600" }}
-                          onClick={toggleFavoriteStatusHandler}
+                          // onClick={toggleFavoriteStatusHandler}
                         >
                           ADD TO WISHLIST
                         </Button>
@@ -377,7 +377,7 @@ const ImageCarousel = () => {
                         size="md"
                         width={200}
                         _hover={{ backgroundColor: "blackAlpha.600" }}
-                        onClick={toggleFavoriteStatusHandler}
+                        // onClick={toggleFavoriteStatusHandler}
                       >
                         ADD TO WISHLIST
                       </Button>

@@ -16,7 +16,6 @@ import WishlistContext, {
 } from "../../context/WishlistContext";
 import CartDetail from "@/component/ui/cart/CartDetail";
 
-
 export default function CartPage() {
   const favoriteCtx = useContext(WishlistContext);
 
@@ -25,13 +24,16 @@ export default function CartPage() {
       <Heading mb={5}>My Cart</Heading>
       <SimpleGrid columns={{ sm: 1, md: 1, lg: 4 }} spacing={0}>
         <GridItem colSpan={3}>
-        {favoriteCtx.totalCarts === 0 ? (
-            <h2 className="text-[24px]">You have no game here. Adding something!</h2>
+          {favoriteCtx.totalCarts === 0 ? (
+            <h2 className="text-[24px]">
+              You have no game here. Adding something!
+            </h2>
           ) : (
-            <ItemsList list={favoriteCtx.carts} />
-          )}        </GridItem>
+            <ItemsList list={favoriteCtx.carts} isCart={true}/>
+          )}{" "}
+        </GridItem>
         <GridItem colSpan={1}>
-          <CartDetail />
+          <CartDetail list={favoriteCtx.carts} />
         </GridItem>
       </SimpleGrid>
     </Container>
