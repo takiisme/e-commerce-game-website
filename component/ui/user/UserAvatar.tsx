@@ -26,28 +26,26 @@ import React from "react";
 import useGetUserInfoApi from "../../../app/user/_api/useGetUserInfoApi";
 import UpdateProfileApi from "../../../app/user/_api/updateProfileApi";
 
-
 export default function UserAvatar() {
   const [{ data, isLoading, isError }] = useGetUserInfoApi();
 
-
   return (
     <Card w={"fit-content"} bg={"none"}>
-    
       <SimpleGrid columns={{ md: 1, lg: 3 }}>
         {/* account avatar */}
         <GridItem colSpan={1}>
           <Avatar
             h={150}
             w={150}
-            name="Dan Abrahmov"
-            src="https://bit.ly/dan-abramov"
+            name="David Brown"
+            src="https://images.unsplash.com/photo-1615109398623-88346a601842?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
           />
         </GridItem>
         {/* account description */}
-        <GridItem colSpan={2}>
-        <UpdateProfileApi/>
-          <HStack spacing={5} ml={{ md: 0, lg: 10 }}>
+        <GridItem colSpan={2} ml={10}>
+          {/* <UpdateProfileApi /> */}
+          <Text fontSize={40} color={'#ffffff'} fontWeight={"bold"} mb={10}>David Brown</Text>
+          <HStack spacing={5} >
             {/* account point */}
             <Container p={0} m={0}>
               <Text

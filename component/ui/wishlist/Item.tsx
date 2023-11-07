@@ -51,10 +51,11 @@ export default function Item({game, isCart}:ItemPropsType) {
         <GridItem colSpan={3}>
           <Flex>
             <Image
-              src="https://cdn1.epicgames.com/offer/6f43ab8025ad42d18510aa91e9eb688b/EGS_FINALFANTASYVIIREMAKEINTERGRADE_SquareEnix_S2_1200x1600-e147110cf8dd1bc8c96810a5867b3475?h=480&quality=medium&resize=1&w=360"
-              alt="FFVII"
-              w={100}
+              src={`/img/${game.id}.webp`}
+              alt={`${game.name}`}
+              w={200}
               borderRadius={5}
+              aspectRatio={3/2}
             />
             <CardHeader p={0} pl={5} fontSize={20}>
               {game.name}

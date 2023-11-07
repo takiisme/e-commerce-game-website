@@ -104,7 +104,7 @@ export default function BuyGame({
           <Button
             textColor={"white"}
             width={"full"}
-            bgColor={"blue.500"}
+            bgGradient="linear(to-r, red.400,pink.400)"
             _hover={{ bgColor: "blue.400" }}
             textTransform={"uppercase"}
             onClick={() => postData(developer.id, price)}

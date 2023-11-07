@@ -16,4 +16,6 @@ export type WishlistContextType = {
   removeCart: (favoriteId: number) => void;
   filter: string,
   handleFilter: (keyword: string) => void;
+  buy: IGame[];
+  addBuy: (favoriteGame: IGame) => void;
 };

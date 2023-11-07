@@ -1,4 +1,5 @@
 import getStripe from "@/app/_lib/getStripe";
+import WishlistContext from "@/context/WishlistContext";
 import { IGame } from "@/context/WislistContextType";
 import {
   Button,
@@ -13,13 +14,14 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 
 interface CartDetailType {
   list: IGame[];
 }
 
 export default function CartDetail({ list }: CartDetailType) {
+  const buyCtx = useContext(WishlistContext);
   const [price, setPrice] = useState<number>(0);
   const [discount, setDiscount] = useState<number>(0);
   // const [tax, setTax] = useState<number>(0);
@@ -29,45 +31,49 @@ export default function CartDetail({ list }: CartDetailType) {
     const p = list
       .map((item) => item.price)
       .reduce((sum, current) => sum + current, 0);
-    const tt = p ;
+    const tt = p;
     setPrice(p);
     setTotal(tt);
   }, list);
 
-  const handleCheckout = async () => {
+  const handleStripe = async () => {
     // console.log(cartItems);
     // console.log('22222');
-    const stripe = await getStripe();
-    console.log(JSON.stringify(list));
+    // update context
 
-    const { data } = await axios.post("/api/getStripe", 
-    {
-      gameList: list,
-      price: total
-    },{
-      headers: {
-        "Content-Type": "application/json",
+    // const stripe = await getStripe();
+    const { data } = await axios.post(
+      "/api/getStripe",
+      {
+        gameList: list,
+        price: total,
       },
-      
-    });
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
 
-    window.location.assign(data)
+    window.location.assign(data);
+  };
 
-    // const response : Response = await fetch('/api/getStripe/route.tsx', {
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //   },
-    //   body: JSON.stringify(list),
+  const handleCheckout = () => {
+    // list.map((game) => {
+    //   console.log(game);
+    //   buyCtx.addBuy(game);
     // });
-
-    // if (response.status === 500) return;
-
-    // const data = await response.json();
-
-    // // Toast.loading("Redirecting...");
-
-    // stripe?.redirectToCheckout({ sessionId: data.id });
+    // console.log(buyCtx.buy);
+    // console.log("Set new list...")
+    // console.log(localStorage.getItem('gameBuy'));
+    
+    const oldData:IGame[] = JSON.parse(localStorage.getItem("gameBuy")!);
+    const storage:IGame[] = [...new Set(oldData.concat(list))];
+    localStorage.setItem('gameBuy', JSON.stringify(storage));
+    console.log(storage);
+    setTimeout(() => {
+      handleStripe();
+    }, 3000);
   };
 
   return (
@@ -94,7 +100,7 @@ export default function CartDetail({ list }: CartDetailType) {
         </Flex>
         <Button
           mt={5}
-          bg={"blue.500"}
+          bgGradient="linear(to-r, red.400,pink.400)"
           _hover={{ bg: "blue.400" }}
           textTransform={"uppercase"}
           w={"full"}

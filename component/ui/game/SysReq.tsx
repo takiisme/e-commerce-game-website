@@ -1,3 +1,4 @@
+import { IGameReq } from "@/component/interface/IGameReq";
 import {
   Card,
   CardHeader,
@@ -8,7 +9,6 @@ import {
   SimpleGrid,
   Text,
 } from "@chakra-ui/react";
-import { IGameReq } from "../../interface/IGameReq";
 
 export default function SysReq(systemRequirements: IGameReq) {
   return (

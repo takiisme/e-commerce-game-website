@@ -12,6 +12,8 @@ const WishlistContext = createContext<WishlistContextType>({
   removeCart: () => {},
   filter: "",
   handleFilter: () => {},
+  buy: [],
+  addBuy: ()=>{}
 });
 
 
@@ -24,6 +26,7 @@ export function WishlistContextProvider({
 }: WishlistContextProviderProps) {
   const [gameFavorites, setGameFavorites] = useState<Array<IGame>>([]);
   const [gameCarts, setGameCarts] = useState<Array<IGame>>([]);
+  const [gameBuy, setGameBuy] = useState<Array<IGame>>([]);
   const [filterText, setFilterText] = useState<string>("");
 
   const handleFilterContent = (name: string) => {
@@ -39,7 +42,19 @@ export function WishlistContextProvider({
       // console.log(`Adding item...${favoriteGame.id}`);
       setGameFavorites([...gameFavorites, favoriteGame]);
     }
-    console.log(gameFavorites);
+  }
+
+  function addBuyHandler(buyGame: IGame | null) {
+    if (
+      buyGame &&
+      gameBuy.every((game) => game.id !== buyGame.id)
+    ) {
+      console.log(buyGame);
+      console.log(`Adding item...${buyGame.id}`);
+      setGameBuy([...gameBuy, buyGame]);
+      console.log(`Added successfully...${buyGame.id}`);
+      console.log(gameBuy);
+    }
   }
 
   function addCartHandler(cartGame: IGame | null) {
@@ -50,7 +65,6 @@ export function WishlistContextProvider({
       // console.log(`Adding item...${cartGame.id}`);
       setGameCarts([...gameCarts, cartGame]);
     }
-    console.log(gameCarts);
   }
 
   function removeFavoriteHandler(favoriteId: number | null) {
@@ -80,6 +94,8 @@ export function WishlistContextProvider({
     removeCart: removeCartHandler,
     filter: filterText,
     handleFilter: handleFilterContent,
+    buy: gameBuy,
+    addBuy: addBuyHandler,
   };
 
   return (

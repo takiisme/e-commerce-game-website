@@ -1,7 +1,7 @@
 import { Card, Divider, Text } from "@chakra-ui/react";
 import React from "react";
-import { IGameComment } from "../../interface/IGameComment";
 import AddComment from "./AddComment";
+import { IGameComment } from "@/component/interface/IGameComment";
 
 export default function CommentSection({
   id,
