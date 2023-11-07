@@ -59,19 +59,27 @@ export default function CartDetail({ list }: CartDetailType) {
   };
 
   const handleCheckout = () => {
-    // list.map((game) => {
-    //   console.log(game);
-    //   buyCtx.addBuy(game);
-    // });
-    // console.log(buyCtx.buy);
-    // console.log("Set new list...")
-    // console.log(localStorage.getItem('gameBuy'));
+    let oldData:IGame[] = JSON.parse(localStorage.getItem('gameBuy')!);
+    console.log(JSON.stringify(oldData));
+    const storage:IGame[] = oldData.concat(list);
+
+    let tmp: IGame[] = [];
+    storage.map((item) => {
+      let i: number;
+      let flag: boolean = true;
+      for (i = 0; i < tmp.length; i++) {
+        if (tmp[i].id === item.id) {
+          flag = false;
+          break;
+        }
+      }
+      if (flag) tmp = [...tmp, item];
+    });
+    // console.log(JSON.stringify(tmp));
+    localStorage.setItem("gameBuy", JSON.stringify(tmp))
     
-    const oldData:IGame[] = JSON.parse(localStorage.getItem('gameBuy')!);
-    // console.log(JSON.stringify(oldData));
-    const storage:IGame[] = [...oldData,...list];
     localStorage.setItem('gameBuy', JSON.stringify(storage));
-    // console.log(JSON.stringify(storage));
+    console.log(JSON.stringify(storage));
     setTimeout(() => {
       handleStripe();
     }, 3000);

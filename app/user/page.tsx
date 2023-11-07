@@ -29,7 +29,7 @@ export default function UserPage() {
     });
     // console.log(JSON.stringify(tmp));
     setGameList(tmp);
-    localStorage.setItem("gameBuy", JSON.stringify(gameList))
+    localStorage.setItem("gameBuy", JSON.stringify(tmp))
     // console.log(JSON.stringify(gameList));
   }, []);
 
