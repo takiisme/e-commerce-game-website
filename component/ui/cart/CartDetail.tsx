@@ -67,10 +67,11 @@ export default function CartDetail({ list }: CartDetailType) {
     // console.log("Set new list...")
     // console.log(localStorage.getItem('gameBuy'));
     
-    const oldData:IGame[] = JSON.parse(localStorage.getItem("gameBuy")!);
-    const storage:IGame[] = [...new Set(oldData.concat(list))];
+    const oldData:IGame[] = JSON.parse(localStorage.getItem('gameBuy')!);
+    // console.log(JSON.stringify(oldData));
+    const storage:IGame[] = [...oldData,...list];
     localStorage.setItem('gameBuy', JSON.stringify(storage));
-    console.log(storage);
+    // console.log(JSON.stringify(storage));
     setTimeout(() => {
       handleStripe();
     }, 3000);

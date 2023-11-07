@@ -33,8 +33,8 @@ export async function POST(request: NextRequest) {
     mode: "payment",
     // payment_method_types: ["card"],
     // billing_address_collection: "auto",
-    success_url: `http://localhost:3000`,
-    cancel_url: `http://localhost:3000`,
+    success_url: `https://e-commerce-game-website.vercel.app/`,
+    cancel_url: `https://e-commerce-game-website.vercel.app/`,
   });
   return NextResponse.json(session.url);
 }

@@ -12,21 +12,21 @@ import WishlistContext, {
 import { IGame } from "@/context/WislistContextType";
 export default function WithSubnavigation() {
   const router = useRouter();
-  const buyCtx = useContext(WishlistContext);
+  // const buyCtx = useContext(WishlistContext);
 
 
-  useEffect(() => {
-    // if (typeof window !== "undefined") {
-    //   const storage: IGame[] = JSON.parse(localStorage.getItem("gameBuy")!);
-    //   console.log(storage);
-    //   if (storage?.length) {
-    //     console.log("Yes, there are some game");
-    //     storage.map((game) => buyCtx.addBuy(game));
-    //     //favs will be populated with your localStorage once, on component mount.
-    //   }
-    // }
-    // localStorage.removeItem('gameBuy');
-  }, []);
+  // useEffect(() => {
+  //   // if (typeof window !== "undefined") {
+  //   //   const storage: IGame[] = JSON.parse(localStorage.getItem("gameBuy")!);
+  //   //   console.log(storage);
+  //   //   if (storage?.length) {
+  //   //     console.log("Yes, there are some game");
+  //   //     storage.map((game) => buyCtx.addBuy(game));
+  //   //     //favs will be populated with your localStorage once, on component mount.
+  //   //   }
+  //   // }
+  //   // localStorage.removeItem('gameBuy');
+  // }, []);
 
   return (
     <>
