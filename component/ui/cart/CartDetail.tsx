@@ -61,7 +61,9 @@ export default function CartDetail({ list }: CartDetailType) {
   const handleCheckout = () => {
     let oldData:IGame[] = JSON.parse(localStorage.getItem('gameBuy')!);
     console.log(JSON.stringify(oldData));
-    const storage:IGame[] = oldData.concat(list);
+    let storage:IGame[];
+    if(oldData) storage = oldData.concat(list);
+    else storage = list;
 
     let tmp: IGame[] = [];
     storage.map((item) => {
