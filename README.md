@@ -14,5 +14,5 @@ Visitors can experience our e-commerce website using two approaches:
 
 Development tools:
 + Front-end: Next.js
-+ Back-end: Nest.js, TypeOrm
++ Back-end: Nest.js, TypeScript, TypeOrm
 + Database: MySQL
