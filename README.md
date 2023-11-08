@@ -12,3 +12,7 @@ Visitors can experience our e-commerce website using two approaches:
 1. Using deployed link: https://e-commerce-game-website.vercel.app/
 2. Pull the github code and run command "npm run dev" to run on localhost. Remember to change the corresponding directories.
 
+Development tools:
++ Front-end: Next.js
++ Back-end: Nest.js, TypeOrm
++ Database: MySQL
