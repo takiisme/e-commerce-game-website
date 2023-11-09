@@ -141,7 +141,7 @@ export default function NavBar() {
         />
         <HStack spacing={8} alignItems={"center"}>
           <Box onClick={() => router.push("/")} cursor={"pointer"}>
-            Arcelity
+            StuGame
           </Box>
           <HStack as={"nav"} spacing={4} display={{ base: "none", md: "flex" }}>
             <Box
