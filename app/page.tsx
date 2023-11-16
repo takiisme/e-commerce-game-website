@@ -16,7 +16,7 @@ export default function WithSubnavigation() {
 
   return (
     <>
-      <title>Arcelity</title>
+      <title>StuGame</title>
       <meta name="description" content="Home"></meta>
       <HeroSection />
       <ProductSection />
